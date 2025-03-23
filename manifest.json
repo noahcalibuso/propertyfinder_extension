@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "PropFinder Pro",
+  "version": "1.0",
+  "description": "Analyzes Zillow listings for investment potential",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.zillow.com/*"
+  ],
+  "optional_permissions": [
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "128": "icon128_transparent.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.zillow.com/*"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ]
+}
