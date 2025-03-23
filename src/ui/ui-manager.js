@@ -279,6 +279,7 @@ class UIManager {
   subscribeToEvents() {
     // Subscribe to property update events
     this.events.on('propertyUpdated', property => {
+      this.createInputsContainer();
       this.createInputFields(property);
       // Setup currency input listeners after fields are created
       this.setupCurrencyInputListeners();
