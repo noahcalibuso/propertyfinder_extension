@@ -6,7 +6,7 @@ A Chrome extension that analyzes Zillow property listings for real estate invest
 
 - Automatically extracts property listing price from Zillow
 - Pulls Rent Zestimate (if available) for realistic income estimation
-- Calculates key investment metrics with visual icons:
+- Calculates key investment metrics:
   - Monthly cash flow
   - Cash on cash return
   - Cap rate
