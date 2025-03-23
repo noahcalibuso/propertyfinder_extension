@@ -4,60 +4,12 @@ document.addEventListener('DOMContentLoaded', function() {
   const tabButtons = document.querySelectorAll('.tab-button');
   const tabContents = document.querySelectorAll('.tab-content');
   
-//   tabButtons.forEach(button => {
-//     button.addEventListener('click', function() {
-//       // Remove active class from all buttons and contents
-//       tabButtons.forEach(btn => btn.classList.remove('active'));
-//       tabContents.forEach(content => content.classList.remove('active'));
-      
-//       // Add active class to clicked button and corresponding content
-//       this.classList.add('active');
-//       const tabId = this.getAttribute('data-tab');
-//       document.getElementById(`${tabId}-tab`).classList.add('active');
-//     });
-//   });
-  
   // Load saved options
   restoreOptions();
   
   // Set up event listeners
   document.getElementById('save').addEventListener('click', saveOptions);
 });
-
-// // Saves options to chrome.storage
-// function saveOptions() {
-//   // Get values from form
-//   const options = {
-//     // Mortgage assumptions
-//     interestRate: parseFloat(document.getElementById('interestRate').value),
-//     loanTerm: parseInt(document.getElementById('loanTerm').value),
-//     downPayment: parseFloat(document.getElementById('downPayment').value),
-//     closingCosts: parseFloat(document.getElementById('closingCosts').value),
-    
-//     // Operating expense assumptions
-//     propertyTaxRate: parseFloat(document.getElementById('propertyTaxRate').value),
-//     insuranceRate: parseFloat(document.getElementById('insuranceRate').value),
-//     maintenanceRate: parseFloat(document.getElementById('maintenanceRate').value),
-//     propertyManagementRate: parseFloat(document.getElementById('propertyManagementRate').value),
-//     vacancyRate: parseFloat(document.getElementById('vacancyRate').value),
-    
-//     // Rental income assumptions
-//     monthlyIncome: parseFloat(document.getElementById('monthlyIncome').value),
-//   };
-  
-//   // Save options
-//   chrome.storage.sync.set(options, function() {
-//     // Update status to let user know options were saved
-//     const status = document.getElementById('status');
-//     status.textContent = 'Settings saved!';
-//     status.className = 'status success';
-//     status.style.display = 'block';
-    
-//     setTimeout(function() {
-//       status.style.display = 'none';
-//     }, 2000);
-//   });
-// }
 
 // Saves options to chrome.storage
 function saveOptions() {
