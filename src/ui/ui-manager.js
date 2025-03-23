@@ -197,6 +197,7 @@ class UIManager {
       </label>
       <input
         id="propfinder-pro-${id}"
+        class="propfinder-pro-currency-input"
         type="text"
         value="${formattedValue}"
         style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; text-align: right; box-sizing: border-box;"
@@ -214,6 +215,62 @@ class UIManager {
     if (this.elements.updateButton) {
       this.elements.updateButton.addEventListener('click', this.handleUpdateClick);
     }
+    
+    // Delay setting up currency input listeners until DOM is updated
+    setTimeout(() => {
+      this.setupCurrencyInputListeners();
+    }, 0);
+  }
+
+  /**
+   * Set up listeners for currency input fields to format values as user types.
+   */
+  setupCurrencyInputListeners() {
+    const currencyInputs = document.querySelectorAll('.propfinder-pro-currency-input');
+    
+    currencyInputs.forEach(input => {
+      input.addEventListener('input', (event) => {
+        // Store cursor position and field content length before formatting
+        const cursorPos = event.target.selectionStart;
+        const originalLength = event.target.value.length;
+        
+        // Get raw value and convert to number
+        const rawValue = this.formatter.parseMoneyValue(event.target.value);
+        
+        // Format as currency
+        const formattedValue = this.formatter.formatCurrency(rawValue);
+        
+        // Calculate new cursor position (account for added/removed characters)
+        let newCursorPos = cursorPos + (formattedValue.length - originalLength);
+        
+        // Update the field value
+        event.target.value = formattedValue;
+        
+        // Restore cursor position
+        event.target.setSelectionRange(newCursorPos, newCursorPos);
+      });
+      
+      // Handle focus to select all text for easy editing
+      input.addEventListener('focus', (event) => {
+        event.target.select();
+      });
+      
+      // Handle special cases (arrow keys, backspace, delete, etc.)
+      input.addEventListener('keydown', (event) => {
+        // Special case for backspace at the first non-digit position
+        if (event.key === 'Backspace' && event.target.selectionStart === 1) {
+          event.preventDefault();
+          event.target.value = '$0';
+          event.target.setSelectionRange(1, 1);
+        }
+        
+        // Special case for delete at the $ sign
+        if (event.key === 'Delete' && event.target.selectionStart === 0) {
+          event.preventDefault();
+          event.target.setSelectionRange(1, 1);
+        }
+      });
+    });
   }
 
   /**
@@ -223,6 +280,8 @@ class UIManager {
     // Subscribe to property update events
     this.events.on('propertyUpdated', property => {
       this.createInputFields(property);
+      // Setup currency input listeners after fields are created
+      this.setupCurrencyInputListeners();
     });
     
     // Subscribe to analysis results events
