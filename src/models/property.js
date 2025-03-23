@@ -1,13 +1,20 @@
 /**
- * Property model representing a real estate property listing
+ * @fileoverview Property model representing a real estate property listing.
+ */
+
+/**
+ * Property model representing a real estate property listing.
  */
 class Property {
   /**
-   * Create a new Property instance
-   * @param {Object} data - Property data
-   * @param {number} data.price - Listing price
-   * @param {number} data.rentEstimate - Monthly rent estimate
-   * @param {number} data.repairCost - Estimated repair costs
+   * Create a new Property instance.
+   * @param {Object=} data - Property data.
+   * @param {number=} data.price - Listing price.
+   * @param {number=} data.rentEstimate - Monthly rent estimate.
+   * @param {number=} data.repairCost - Estimated repair costs.
+   * @param {number=} data.monthlyIncome - Monthly rental income.
+   * @param {string=} data.address - Property address.
+   * @param {string=} data.url - Property listing URL.
    */
   constructor(data = {}) {
     this.price = data.price || 0;
@@ -19,24 +26,30 @@ class Property {
   }
 
   /**
-   * Get the adjusted purchase price including repair costs
-   * @returns {number} Adjusted price
+   * Get the adjusted purchase price including repair costs.
+   * @return {number} Adjusted price.
    */
   getAdjustedPrice() {
     return this.price + this.repairCost;
   }
 
   /**
-   * Get the annual rental income
-   * @returns {number} Annual income
+   * Get the annual rental income.
+   * @return {number} Annual income.
    */
   getAnnualIncome() {
     return this.monthlyIncome * 12;
   }
 
   /**
-   * Updates property data
-   * @param {Object} data - Updated property data
+   * Updates property data.
+   * @param {Object} data - Updated property data.
+   * @param {number=} data.price - Listing price.
+   * @param {number=} data.repairCost - Estimated repair costs.
+   * @param {number=} data.monthlyIncome - Monthly rental income.
+   * @param {number=} data.rentEstimate - Monthly rent estimate.
+   * @param {string=} data.address - Property address.
+   * @param {string=} data.url - Property listing URL.
    */
   update(data) {
     if (data.price !== undefined) this.price = data.price;
@@ -54,8 +67,8 @@ class Property {
   }
 
   /**
-   * Converts the property to JSON
-   * @returns {Object} JSON representation
+   * Converts the property to JSON.
+   * @return {Object} JSON representation.
    */
   toJSON() {
     return {
@@ -69,9 +82,9 @@ class Property {
   }
 
   /**
-   * Create a Property from JSON data
-   * @param {Object} json - JSON data
-   * @returns {Property} New Property instance
+   * Create a Property from JSON data.
+   * @param {Object} json - JSON data.
+   * @return {Property} New Property instance.
    */
   static fromJSON(json) {
     return new Property(json);
