@@ -144,7 +144,7 @@ class AppController {
         currentUrl = window.location.href;
         
         // Check if we're on a property details page
-        if (this.isPropertyPage(currentUrl)) {
+        if (this.isPropertyPage(currentUrl) && !this.isPropertyImagePage(currentUrl)) {
           // Wait for page to load
           setTimeout(() => {
             // Extract new property data
@@ -163,7 +163,7 @@ class AppController {
     // Also listen for History API changes
     window.addEventListener('popstate', () => {
       // Check if we're on a property details page
-      if (this.isPropertyPage(window.location.href)) {
+      if (this.isPropertyPage(currentUrl) && !this.isPropertyImagePage(currentUrl)) {
         // Wait for page to load
         setTimeout(() => {
           // Extract new property data
@@ -186,6 +186,15 @@ class AppController {
    */
   isPropertyPage(url) {
     return url.includes('zillow.com/homedetails');
+  }
+
+  /**
+   * Check if the current URL is a property details image page.
+   * @param {string} url - URL to check.
+   * @return {boolean} True if it's a property details page.
+   */
+  isPropertyImagePage(url) {
+    return url.includes('?mmlb=g,*');
   }
 }
 
