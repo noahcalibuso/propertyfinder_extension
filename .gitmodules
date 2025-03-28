@@ -1,0 +1,6 @@
+[submodule "website/themes/FixIt"]
+	path = website/themes/FixIt
+	url = https://github.com/hugo-fixit/FixIt.git
+[submodule "website/website/propfinder-pro"]
+	path = website/website/propfinder-pro
+	url = https://github.com/hugo-fixit/hugo-fixit-starter1.git
