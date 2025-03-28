@@ -11,7 +11,7 @@ module.exports = {
   
   entry: {
     content: './src/content.js',
-    popup: './src/popup/popup.js',
+    popup: './src/popup.js',
     background: './src/background/background.js',
   },
   

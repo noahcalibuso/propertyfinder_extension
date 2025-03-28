@@ -47,7 +47,7 @@ required_files=(
   "src/models/investment-assumptions.js"
   "src/models/property.js"
   "src/ui/ui-manager.js"
-  "src/popup/popup.js"
+  "src/popup.js"
   "src/background/background.js"
   "src/content.js"
 )

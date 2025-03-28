@@ -3,8 +3,6 @@
  */
 
 import EventEmitter from '../utils/event-emitter.js';
-import Property from '../models/property.js';
-import InvestmentAssumptions from '../models/investment-assumptions.js';
 import PropertyDataExtractor from '../services/property-data-extractor.js';
 import InvestmentCalculator from '../services/investment-calculator.js';
 import StorageService from '../services/storage-service.js';
@@ -191,7 +189,7 @@ class AppController {
   /**
    * Check if the current URL is a property details image page.
    * @param {string} url - URL to check.
-   * @return {boolean} True if it's a property details page.
+   * @return {boolean} True if it's a property details image page.
    */
   isPropertyImagePage(url) {
     return url.includes('?mmlb=g,*');

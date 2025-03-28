@@ -2,7 +2,7 @@
  * @fileoverview Entry point for the popup UI.
  */
 
-import PopupController from '../controllers/popup-controller.js';
+import PopupController from './controllers/popup-controller.js';
 
 // Initialize popup when DOM content is loaded
 document.addEventListener('DOMContentLoaded', () => {
